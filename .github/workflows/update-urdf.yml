@@ -36,6 +36,10 @@ jobs:
               "output_format": "mujoco"
             }
       - run: onshape-to-robot .
+        env:
+          ONSHAPE_API: ${{ vars.ONSHAPE_API }}
+          ONSHAPE_ACCESS_KEY: ${{ secrets.ONSHAPE_ACCESS_KEY }}
+          ONSHAPE_SECRET_KEY: ${{ secrets.ONSHAPE_SECRET_KEY }}
       - name: Configure Git
         run: |
           git config user.name "github-actions[bot]"
