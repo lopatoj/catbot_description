@@ -28,13 +28,21 @@ jobs:
           ONSHAPE_ACCESS_KEY: ${{ secrets.ONSHAPE_ACCESS_KEY }}
           ONSHAPE_SECRET_KEY: ${{ secrets.ONSHAPE_SECRET_KEY }}
         run: onshape-to-robot .
+      - uses: RadovanPelka/github-action-json@main
+        with: 
+          path: config.json
+          replaceWith: |
+            {
+              "output_format": "mujoco"
+            }
+      - run: onshape-to-robot .
       - name: Configure Git
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
       - name: Commit changes
         run: |
-          git add .
+          git add *.urdf *.xml
           git commit -m "Automated update by GitHub Action"
       - name: Push changes
         run: git push origin HEAD:${{ github.ref }}
