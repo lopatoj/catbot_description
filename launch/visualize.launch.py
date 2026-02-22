@@ -10,7 +10,7 @@ from launch_ros.parameter_descriptions import ParameterValue
 def generate_launch_description():
     description_path = get_package_share_path("catbot_description") # TODO: replace with package name
 
-    robot_description_content = Command(["cat ", str(description_path / "urdf" / "robot.urdf")])
+    robot_description_content = Command(["cat ", str(description_path / "robot.urdf")])
 
     robot_state_publisher_node = Node(
         package="robot_state_publisher",
